@@ -1,4 +1,4 @@
-#below is the commands that can be used 90% in production. Their are more commands too but these are real-life.
+#below is the commands that can be cover 90% in production. Their are more commands too but these are main troubleshooting and more.
 
 #Asterisk CLI Access
 asterisk -rvvv
@@ -65,3 +65,7 @@ core show channels
 channel request hangup <channel-name>
 #Reload everything
 core reload
+#Restart Asterisk immediately (drops calls & led to joblessness if did un-necessarily)
+core restart now
+#Restart after current calls finish
+core restart gracefully
