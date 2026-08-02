@@ -110,7 +110,7 @@ main_menu() {
         3) learning_mode ;;
         4)
             echo
-            echo "Thank you for using Asterisk PBX LAB Installer."
+            echo "Thank you for using Asterisk PBX LAB Installer.!...---> Note : This bash script is compiled by AI. Please review for accuracy."
             echo
             exit 0
             ;;
