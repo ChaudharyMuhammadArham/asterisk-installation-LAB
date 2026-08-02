@@ -81,8 +81,8 @@ echo "================================================="
 echo "          ASTERISK PBX LAB INSTALLER"
 echo "================================================="
 
-echo "This lab is created with help of AI and AI make errors. You may use simple installation by choosing install legacy version."
-echo "Author  : Chaudhary Muhammad Arham"
+echo "The original content is shared with AI and This lab is created with help of AI and AI make errors. You may use simple installation by choosing install legacy version."
+echo "Author  : Chaudhary Muhammad Arham | System Support Engineer -II"
 
 echo "================================================="
 
