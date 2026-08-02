@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#version 0.9...to be continued
+# version 0.9...to be continued
 # Asterisk PBX Lab Installation Script
 # Tested with Asterisk 20 LTS
 
