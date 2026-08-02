@@ -81,7 +81,7 @@ echo "================================================="
 echo "          ASTERISK PBX LAB INSTALLER"
 echo "================================================="
 
-echo "The original content is shared with AI and This lab is created with help of AI and AI make errors. You may use simple installation by choosing install legacy version."
+echo "The original content was shared with AI and This lab was created with help of AI and AI can make errors. You can read 'READ.md' or use simple installation by choosing install legacy version."
 echo "Author  : Chaudhary Muhammad Arham | System Support Engineer -II"
 
 echo "================================================="
@@ -582,31 +582,31 @@ echo
 
 
 echo "Step 1:"
-echo "Update Linux packages"
+echo "Update Linux packages like with commands apt update && apt upgrade"
 
 
 echo
 
 echo "Step 2:"
-echo "Install compiler and development libraries"
+echo "Install compiler and development libraries with the help of wget (a complete command available in the install file of this repo)."
 
 
 echo
 
 echo "Step 3:"
-echo "Download Asterisk source code"
+echo "Download Asterisk source code. You may download asterisk from any official source, an offical downloading link with version 20.latest is available in install file of this repo."
 
 
 echo
 
 echo "Step 4:"
-echo "Extract source files"
+echo "Extract source files. with the help of tar or any tool you may prefer. One main step, normally extraction is recommended in /usr/src folder but you may choose your own."
 
 
 echo
 
 echo "Step 5:"
-echo "Install Asterisk prerequisites"
+echo "Install Asterisk prerequisites. After getting in asterisk folder and moving to contrib/scripts/install_prereq and running install here all pre-requisites will be installed."
 
 
 echo
@@ -618,37 +618,37 @@ echo "Run ./configure"
 echo
 
 echo "Step 7:"
-echo "Compile using make"
+echo "Compile using make, 'make' it self is a command in asterisk setup for compiling the configurations."
 
 
 echo
 
 echo "Step 8:"
-echo "Install using make install"
+echo "Install using make install, here too, 'make install' is a complete command for the installation of asterisk."
 
 
 echo
 
 echo "Step 9:"
-echo "Install sample configurations"
+echo "Install sample configurations. If any one want to test sample calling using sample extentions, running, 'make sample' is necessary (a detailed guide is also available)."
 
 
 echo
 
 echo "Step 10:"
-echo "Configure PJSIP endpoints"
+echo "Configure PJSIP endpoints, an amendments in 'pjsip.conf' file will be required or you may add extensions according to your use."
 
 
 echo
 
 echo "Step 11:"
-echo "Configure dialplan"
+echo "Configure dialplan, its amendment depends how you dealt with 'pjsip.conf', details available in troubleshooting guide of this repo."
 
 
 echo
 
 echo "Step 12:"
-echo "Test inbound/outbound calls"
+echo "Test inbound/outbound calls, normally in ideal scenerios call will work but some times not, main causes explained in troubleshooting guide of this repo."
 
 
 echo
@@ -659,11 +659,11 @@ echo "- Endpoint registration"
 
 echo "- Dialplan matching"
 
-echo "- RTP connectivity"
-
 echo "- Firewall rules"
 
 echo "- NAT settings"
+
+echo "- For commands and complete steps, you are requested to please refer to my linkedin 'www.linkedin.com/in/chaudhary-muhammad-arham-619825212' where a detailed article is available for the same purposes or you may refer to the install folder of this repo for further details."
 
 
 echo
@@ -737,7 +737,7 @@ learning_mode
 
 echo
 
-echo "Exiting Asterisk PBX Lab Installer."
+echo "Exiting Asterisk PBX Lab Installer. The original content was shared with AI and This lab was created with help of AI and AI can make errors. You can read 'READ.md' or use simple installation by choosing install legacy version."
 
 exit 0
 
