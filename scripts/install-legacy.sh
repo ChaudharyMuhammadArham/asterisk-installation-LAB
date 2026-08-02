@@ -1,123 +1,100 @@
 #!/bin/bash
 
-# version 0.9...to be continued
 # Asterisk PBX Lab Installation Script
-# Tested with Asterisk 20 LTS
+# Tested with Ubuntu / Debian Linux
 
 set -e
 
-ASTERISK_VERSION="20.latest"
-SOURCE_DIR="/usr/src"
+SOURCE_DIR="/usr/src"  # to change directory edit this file and add your preferred path
 
-echo "===========''This LAB is for educational and learning purpose only''==========================="
+echo "===========This lab is for educational and professional learning purposes only.!.--->>Please note that this bash script is compiled by AI, and AI can make errors.=============="
 echo "Updating system packages"
-echo "======================================"
+echo "========================================"
 
 sudo apt update
 sudo apt upgrade -y
 
-
-echo "======================================"
+echo "========================================"
 echo "Installing build dependencies"
-echo "======================================"
+echo "========================================"
 
 sudo apt install -y \
-build-essential \
-wget \
-curl \
-git \
-libssl-dev \
-libncurses5-dev \
-libnewt-dev \
-libxml2-dev \
-libsqlite3-dev \
-uuid-dev \
-libjansson-dev
+build-essential wget curl git libssl-dev libncurses5-dev \
+libnewt-dev libxml2-dev libsqlite3-dev uuid-dev libjansson-dev
 
+echo "========================================"
+echo "Asterisk Version Selection"
+echo "========================================"
+echo
+echo "Choose Asterisk version to install:"
+echo "  1) Latest version (20.latest) - Recommended"
+echo "  2) Specific version (enter manually)"
+echo
+read -p "Enter your choice (1 or 2): " choice
 
-echo "======================================"
+case $choice in
+    1)
+        ASTERISK_VERSION="20.latest"
+        echo "Selected: Latest version (20.latest)"
+        ;;
+    2)
+        read -p "Enter Asterisk version (e.g., 20.7.2, 21.0.0): " ASTERISK_VERSION
+        if [ -z "$ASTERISK_VERSION" ]; then
+            echo "Error: Version cannot be empty"
+            exit 1
+        fi
+        echo "Selected: Version $ASTERISK_VERSION"
+        ;;
+    *)
+        echo "Error: Invalid choice. Please enter 1 or 2"
+        exit 1
+        ;;
+esac
+
+echo
+echo "========================================"
 echo "Moving to source directory"
-echo "======================================"
+echo "========================================"
 
-cd $SOURCE_DIR
+cd $SOURCE_DIR || { echo "Failed to change to $SOURCE_DIR"; exit 1; }
 
-
-echo "======================================"
+echo "========================================"
 echo "Downloading Asterisk source"
-echo "======================================"
+echo "========================================"
 
-sudo wget http://downloads.asterisk.org/pub/telephony/asterisk/asterisk-${ASTERISK_VERSION}.tar.gz
-if [ -f "asterisk-${ASTERISK_VERSION}.tar.gz" ]; then
-    echo "Source archive already exists. Skipping download."
+if [ ! -f "asterisk-${ASTERISK_VERSION}.tar.gz" ]; then
+    echo "Downloading asterisk-${ASTERISK_VERSION}.tar.gz..."
+    sudo wget http://downloads.asterisk.org/pub/telephony/asterisk/asterisk-${ASTERISK_VERSION}.tar.gz || \
+        { echo "Download failed"; exit 1; }
 else
-    sudo wget http://downloads.asterisk.org/pub/telephony/asterisk/asterisk-${ASTERISK_VERSION}.tar.gz
+    echo "Archive already exists, skipping download"
 fi
 
-
-echo "======================================"
+echo "========================================"
 echo "Extracting Asterisk source"
-echo "======================================"
+echo "========================================"
 
-sudo tar -xzf asterisk-20.latest.tar.gz
+sudo tar -xzf asterisk-${ASTERISK_VERSION}.tar.gz || \
+    { echo "Extraction failed"; exit 1; }
 
+echo "========================================"
+echo "Entering Asterisk directory and installing"
+echo "========================================"
 
-cd asterisk-20.*
+cd asterisk-20.* || { echo "Asterisk directory not found"; exit 1; }
 
+sudo contrib/scripts/install_prereq install || { echo "Prerequisite installation failed"; exit 1; }
+./configure || { echo "Configuration failed"; exit 1; }
+make -j$(nproc) || { echo "Compilation failed"; exit 1; }
+sudo make install || { echo "Installation failed"; exit 1; }
+sudo make samples || { echo "Sample installation failed"; exit 1; }
+sudo make config || { echo "Service configuration failed"; exit 1; }
 
-echo "======================================"
-echo "Installing Asterisk prerequisites"
-echo "======================================"
-
-sudo contrib/scripts/install_prereq install
-
-
-echo "======================================"
-echo "Configuring Asterisk"
-echo "======================================"
-
-./configure
-
-
-echo "======================================"
-echo "Compiling Asterisk"
-echo "======================================"
-
-make -j$(nproc)
-
-
-echo "======================================"
-echo "Installing Asterisk"
-echo "======================================"
-
-sudo make install
-
-
-echo "======================================"
-echo "Installing sample configurations"
-echo "======================================"
-
-sudo make samples
-
-
-echo "======================================"
-echo "Installing system service"
-echo "======================================"
-
-sudo make config
-
-
-echo "======================================"
-echo "Asterisk installation completed"
-echo "======================================"
-
-echo
-echo "======================================"
-echo "Installation completed successfully."
-echo "======================================"
+echo "========================================"
+echo "Installation completed successfully!"
+echo "========================================"
 echo
 echo "Useful verification commands:"
-echo
-echo "asterisk -rvvv"
-echo "core show version"
-echo "systemctl status asterisk"
-echo
+echo "  asterisk -rvvv"
+echo "  core show version"
+echo "  systemctl status asterisk"
