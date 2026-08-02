@@ -1,5 +1,6 @@
 #!/bin/bash
 
+#version 0.9...to be continued
 # Asterisk PBX Lab Installation Script
 # Tested with Asterisk 20 LTS
 
@@ -45,7 +46,12 @@ echo "======================================"
 echo "Downloading Asterisk source"
 echo "======================================"
 
-sudo wget http://downloads.asterisk.org/pub/telephony/asterisk/asterisk-20.latest.tar.gz
+sudo wget http://downloads.asterisk.org/pub/telephony/asterisk/asterisk-${ASTERISK_VERSION}.tar.gz
+if [ -f "asterisk-${ASTERISK_VERSION}.tar.gz" ]; then
+    echo "Source archive already exists. Skipping download."
+else
+    sudo wget http://downloads.asterisk.org/pub/telephony/asterisk/asterisk-${ASTERISK_VERSION}.tar.gz
+fi
 
 
 echo "======================================"
@@ -104,6 +110,14 @@ echo "======================================"
 echo "Asterisk installation completed"
 echo "======================================"
 
-echo "Verify installation using:"
+echo
+echo "======================================"
+echo "Installation completed successfully."
+echo "======================================"
+echo
+echo "Useful verification commands:"
+echo
 echo "asterisk -rvvv"
 echo "core show version"
+echo "systemctl status asterisk"
+echo
