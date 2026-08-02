@@ -10,7 +10,7 @@ set -e  # Exit immediately if any command fails
 # Purpose : Interactive Asterisk PBX installer for educational and 
 #           professional lab environments.
 #
-# Note    : This bash script is compiled by AI. Please review for accuracy.
+# Note    : This bash script is compiled by AI. And AI can make errors.
 #
 # Features
 # --------
@@ -110,7 +110,7 @@ main_menu() {
         3) learning_mode ;;
         4)
             echo
-            echo "Thank you for using Asterisk PBX LAB Installer.!...---> Note : This bash script is compiled by AI. Please review for accuracy."
+            echo "Thank you for using Asterisk PBX LAB Installer.!...---> Note : This bash script is compiled by AI. And AI can make errors."
             echo
             exit 0
             ;;
