@@ -6,7 +6,7 @@
 # Author  : Chaudhary Muhammad Arham | System Support Engineer - II
 #
 # Purpose :
-# Interactive Asterisk PBX installer for educational and professional lab environments.
+# Interactive Asterisk PBX installer for educational and professional lab environments.!.--->>Please note that this bash script is compiled by AI, and AI can make errors.
 #
 # Features
 # --------
