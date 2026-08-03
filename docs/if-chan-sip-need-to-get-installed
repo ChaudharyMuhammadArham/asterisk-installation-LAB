@@ -1,0 +1,51 @@
+#Asterisk PBX using lastest version, having default SIP stack of 'PJSIP'. But if someone wants to use 'chan_sip', ''SIP Stack'' in the modules except 'PJSIP', one may need to first verify either 'chan_sip' comes as a legacy SIP stack with the downloaded asterisk version, and this can be confirmed with;
+
+module show like chan_sip #this can be run only in asterisk cli
+
+OR
+
+ls /usr/lib/asterisk/modules | grep chan_sip #for checking the availability of asterisk module.
+
+#If chan_sip available then we can add this in our configurations and then rest of our configurations will changed too. And if 'chan_sip' module is not available then we will not be able to force asterisk for using our created, ''sip.conf'' file, Like;,
+
+#if chan_sip available, then;,
+
+module load chan_sip.so #run in asterisk cli
+
+#then verify this configurations and installation with;
+
+module show like chan_sip
+
+#Then, the sample configurations or if your production configurations files can also be changed, like;,
+
+ls /etc/asterisk | grep sip.conf
+
+OR
+
+nano /etc/asterisk/sip.conf
+
+#And same for extensions.conf (dialplan), like, we will use 'SIP' instead of ''PJSIP'';
+
+#Dial(PJSIP/101,10)
+
+Dial(SIP/101,10)
+
+#Reloading, verification commands are separate for 'PJSIP' and for 'chan_sip', like;
+
+sip reload
+core reload
+
+sip show peers
+sip show users
+
+#...---> chan_sip and pjsip modules both can exists at the same time, and asterisk will pick up configurations based on dialplan, we can remove the pjsip moudles if required from and in asterisk cli;
+
+module unload * #* will replace with all the module name used by pjsip
+
+OR
+
+#We can change the module configuration file from;
+
+nano /etc/asterisk/modules.conf
+
+#And at the end 'asterisk need to get restarted'.
